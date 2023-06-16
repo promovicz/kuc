@@ -432,8 +432,8 @@ Value element(Value x, Value y) {
         Value arg_x = item(y, 0), arg_y = item(y, 1);
         if (!IS_NULL(arg_x) && !IS_NULL(arg_y))
             return call_binary(x, arg_x, arg_y); // c. pass
-        // falls through
     }
+        /* fall through */
     default: {
         bool nulls = 0;
         Value args[y->count];
