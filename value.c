@@ -480,7 +480,7 @@ Value create_char(char c) {
 static struct value_int small_ints[SMALL_INTS_MAX - SMALL_INTS_MIN];
 
 static void __attribute__ ((constructor)) small_ints_init() {
-    for (int i = 0; i < sizeof small_ints / sizeof *small_ints; i++) {
+    for (unsigned i = 0; i < sizeof small_ints / sizeof *small_ints; i++) {
         small_ints[i].type_int = type_int;
         small_ints[i].vector_int = 0;
         small_ints[i]._int = SMALL_INTS_MIN + i;
@@ -1152,7 +1152,7 @@ static void __attribute__ ((constructor)) names_init() {
         NAME_NAME(adverb)
     };
 
-    for (int i = 0; i < sizeof info / sizeof *info; i++) {
+    for (unsigned i = 0; i < sizeof info / sizeof *info; i++) {
         name n = find_name(info[i].s, strlen(info[i].s));
         if (info[i].value) {
             info[i].literal.type_name = type_name;
