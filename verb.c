@@ -1067,9 +1067,8 @@ Value cast(Value x, Value y) {
             return create_name(y->chars, y->count);
         }
         if (x->_name == name_verb && !y->vector && y->type == type_int) {
-            int verb = ABS(y->_int);
-            if (verb < 0 || verb >= sizeof verbs / sizeof *verbs
-                         || verbs[verb].name)
+            unsigned verb = ABS(y->_int);
+            if (verb >= sizeof verbs / sizeof *verbs || verbs[verb].name)
                 error(error_range);
             return y->_int >= 0 ? (Value)&verbs[verb].literal
                                 : (Value)&verbs[verb].literal_prime;

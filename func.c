@@ -135,9 +135,9 @@ static void cf_free(struct cf_state* state, instr_word x) {
 
 static index cf_auto_arg(struct cf_state* state, Value var) {
     static Value* names[] = { &name_x, &name_y, &name_z };
-    for (index i = 0; i < sizeof names / sizeof *names; i++)
+    for (unsigned i = 0; i < sizeof names / sizeof *names; i++)
         if (var->_name == (*names[i])->_name) {
-            for (index j = state->args->count; j <= i; j++)
+            for (unsigned j = state->args->count; j <= i; j++)
                 push(&state->args, *names[j]);
             return 1 + i;
         }
@@ -958,7 +958,7 @@ static void disasm_indented(Value value, int indent) {
         case 0: {
             DISASM_REG(instr[ip+1]); printf(" : ");
             DISASM_REG(instr[ip+2]); putchar(' ');
-            int verb = instr[ip];
+            unsigned verb = instr[ip];
             if (verb < sizeof verbs / sizeof *verbs && verbs[verb].name)
                 putchar(verbs[verb].name);
             else
@@ -976,7 +976,7 @@ static void disasm_indented(Value value, int indent) {
         }
         case 1: {
             DISASM_REG(instr[ip+1]); printf(" : ");
-            int verb = instr[ip] % INSTR_PART;
+            unsigned verb = instr[ip] % INSTR_PART;
             if (verb < sizeof verbs / sizeof *verbs && verbs[verb].name)
                 printf("%c:", verbs[verb].name);
             else
