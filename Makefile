@@ -10,17 +10,22 @@ HEADERS =        value.h alloc.h parse.h func.h code.h error.h apply.h \
 TARGET  = kuc
 
 CC      = gcc
-CFLAGS  = -ggdb -O3 -march=native -std=gnu99 -fms-extensions \
+
+CFLAGS  = -O3 -march=native -g \
+          -std=gnu99 -fms-extensions \
           -I/usr/local/include \
-          -Wall -Wno-parentheses -Wno-attributes -Wpointer-arith
-LDFLAGS = -L/usr/local/lib -lm -ledit -ltermcap
+          -Wall -Wextra -Wpointer-arith \
+          -Wno-parentheses -Wno-attributes -Wno-unused-parameter
+
+LIBFLAGS = -lm -ledit -ltermcap
 
 $(TARGET): $(OBJECTS) Makefile
-	$(CC) -o $@ $(OBJECTS) $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LIBFLAGS)
+
+.c.o:
+	$(CC) $(CFLAGS) $(CONFIG) -c $<
 
 $(OBJECTS): $(HEADERS) Makefile
-.c.o:
-	$(CC) $(CONFIG) $(CFLAGS) -c $<
 
 .PHONY: clean
 clean:
