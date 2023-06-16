@@ -946,7 +946,7 @@ static void disasm_reg(instr_word r, Value* literals, MValue* inner) {
 static void disasm_indented(Value value, int indent) {
     if (value->type != type_func)
         error(error_type);
-    const Func const* func = &value->func;
+    const Func *const func = &value->func;
     const instr_word *const instr = func->code->instr;
     MValue inner = create_items(type_variant, 0);
 
