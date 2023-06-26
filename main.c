@@ -100,7 +100,8 @@ void eval_interactive() {
     el_set(el, EL_HIST, history, h);
 
     for (;;) {
-        const char* line = el_gets(el, NULL);
+        int count; // not used, but required for some libedit variants
+        const char* line = el_gets(el, &count);
         if (!line || !*line) // fixme: can something other than EOF trigger this
             break;
         if (!is_empty(line)) {
