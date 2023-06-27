@@ -19,6 +19,8 @@ CFLAGS  = -O3 -march=native -g \
 
 LIBFLAGS = -lm -ledit -ltermcap
 
+TESTS := $(wildcard test/*.kuc)
+
 $(TARGET): $(OBJECTS) Makefile
 	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LIBFLAGS)
 
@@ -30,3 +32,8 @@ $(OBJECTS): $(HEADERS) Makefile
 .PHONY: clean
 clean:
 	rm -f -- $(OBJECTS) $(TARGET)
+
+.PHONY: check
+check:
+	for t in ${TESTS}; do echo "/ running $$t"; ./kuc $$t; done
+
