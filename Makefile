@@ -1,7 +1,7 @@
 #CONFIG += -DNDEBUG     # disable debugging and asserts
 CONFIG += -DNVALGRIND   # remove Valgrind markup
-CONFIG += -DNJIT        # disable machine code generation (AMD64 only)
-CONFIG += -DNSHORTCUT   # remove shortcut paths (reduce code size)
+#CONFIG += -DNJIT        # disable machine code generation (AMD64 only)
+#CONFIG += -DNSHORTCUT   # remove shortcut paths (reduce code size)
 
 OBJECTS = main.o value.o alloc.o parse.o func.o code.o error.o apply.o \
                  verb.o adverb.o arith.o string.o sys.o
